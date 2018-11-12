@@ -1,0 +1,29 @@
+{
+  "name": "general-git-test",
+  "version": "8.10.15",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semver": "bash .scripts/git/semver.sh",
+    "tag": "bash .scripts/git/tag.sh"
+  },
+  "husky": {
+    "hooks": {
+      "post-commit": "bash ./.scripts/git/hooks/post-commit.sh"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/criography/test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/criography/test/issues"
+  },
+  "homepage": "https://github.com/criography/test#readme",
+  "devDependencies": {
+    "husky": "^1.2.0"
+  }
+}
