@@ -6,7 +6,7 @@ get_current_dir() {
 
 get_semver() {
     if [[ "$1" == "master" ]]; then
-       JSON="git show origin/master:package.json"
+       JSON="git remote update && git show origin/master:package.json"
     else
        JSON="cat ./package.json"
     fi
