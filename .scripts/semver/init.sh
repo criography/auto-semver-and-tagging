@@ -17,7 +17,7 @@ get_semver() {
 }
 
 
-
+echo $(get_semver "master") $(get_semver "branch")
 
 # test semvers and attempt to increment
 # =======================================
