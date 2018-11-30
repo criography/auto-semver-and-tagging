@@ -6,7 +6,7 @@ get_current_dir() {
 
 get_semver() {
     if [[ "$1" == "master" ]]; then
-       JSON="git remote update && git show origin/master:package.json"
+       JSON="git show origin/master:package.json"
     else
        JSON="cat ./package.json"
     fi
@@ -17,7 +17,12 @@ get_semver() {
 }
 
 
-echo $(get_semver "master") $(get_semver "branch")
+
+# ensure all refs are current
+# =======================================
+git remote update
+
+
 
 # test semvers and attempt to increment
 # =======================================
