@@ -17,10 +17,13 @@ get_semver() {
 }
 
 
+# ONLY RUN IF NOT MASTER
+# =======================================
+
 
 # ensure all refs are current
 # =======================================
-git remote update
+git fetch origin master
 
 
 
