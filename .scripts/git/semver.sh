@@ -4,8 +4,8 @@
 semver="./.scripts/vendor/semver-tool/src/semver"
 
 # helpers
-. ./.scripts/helpers/bash/filesystem.sh
-. ./.scripts/helpers/bash/git.sh
+. ./.scripts/_helpers/bash/filesystem.sh
+. ./.scripts/_helpers/bash/git.sh
 
 
 
