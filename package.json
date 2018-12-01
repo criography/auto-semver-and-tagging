@@ -19,8 +19,5 @@
     "url": "https://github.com/criography/test/issues"
   },
   "homepage": "https://github.com/criography/test#readme",
-  "devDependencies": {
-    "semver": "^5.6.0",
-    "semver-tool": "git+https://github.com/fsaintjacques/semver-tool.git"
-  }
+  "devDependencies": {}
 }
