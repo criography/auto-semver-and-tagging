@@ -67,3 +67,4 @@ fi
 # =======================================
 git add ./package.json
 git commit -m "incrementing semver like a pro 🤓"
+git push --no-verify
