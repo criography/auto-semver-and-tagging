@@ -39,5 +39,5 @@ fi
 
 # Tag this baby up
 # ==========================================
-git tag $LATEST_TAG
-git push origin $LATEST_TAG
+git tag $MASTER_SEMVER
+git push origin $MASTER_SEMVER
