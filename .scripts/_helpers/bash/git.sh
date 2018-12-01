@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
 
 # fun: get_semver branch
 # txt: retrieve package.json's version from a local branch or remote master
