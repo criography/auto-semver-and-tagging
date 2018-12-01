@@ -31,10 +31,11 @@ git fetch origin master
 # higher than master (assuming manual bump)
 # ==========================================
 MASTER_SEMVER=$(get_semver "master")
+BRANCH_SEMVER=$(get_semver "branch")
 
 SEMVER_DIFF=$(. "$semver"   \
     compare                 \
-    $(get_semver "branch")  \
+    "$BRANCH_SEMVER"  \
     "$MASTER_SEMVER"
 )
 
@@ -48,12 +49,12 @@ fi
 # ==========================================
 NEW_SEMVER=$(. "$semver" bump patch "$MASTER_SEMVER")
 sed -i -e \
-    "s/\"version\": \"[^/]*\"/\"version\": \"$NEW_SEMVER\"/g" \
+    "s/\"version\": \"$BRANCH_SEMVER\"/\"version\": \"$NEW_SEMVER\"/g" \
     ./package.json
 
 
 
-# Creating new commit
+# Create new commit
 # ==========================================
 git add ./package.json
 git commit -m "🏆 Semvering like a pro 🏆" --no-verify
