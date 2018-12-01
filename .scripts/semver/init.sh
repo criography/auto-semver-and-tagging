@@ -23,7 +23,7 @@ get_semver() {
 
 # ensure all refs are current
 # =======================================
-# git fetch origin master
+git fetch origin master
 
 
 
@@ -69,5 +69,4 @@ fi
 # update package.json
 # =======================================
 git add ./package.json
-git commit -m "incrementing semver like a pro"
-git push --no-verify
+git commit -m "Semvering like a pro" --no-verify
