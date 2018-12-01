@@ -23,7 +23,7 @@ get_semver() {
 
 # ensure all refs are current
 # =======================================
-git fetch origin master
+# git fetch origin master
 
 
 
