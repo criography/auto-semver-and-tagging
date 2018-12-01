@@ -9,8 +9,8 @@
   },
   "husky": {
     "hooks": {
-      "post-commit": "bash ./scipts/git/hooks/post-commit.sh",
-      "post-merge": "bash ./scipts/git/hooks/post-merge.sh"
+      "post-commit": "bash ./scripts/git/hooks/post-commit.sh",
+      "post-merge": "bash ./scripts/git/hooks/post-merge.sh"
     }
   },
   "repository": {
