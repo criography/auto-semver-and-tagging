@@ -20,7 +20,7 @@ git fetch --prune origin "+refs/tags/*:refs/tags/*"
 # Warn if tag ahead of semver.
 # ==========================================
 MASTER_SEMVER=$(get_semver "master")
-LATEST_TAG=$(get_latest_tag)
+LATEST_TAG=$(get_highest_tag)
 
 SEMVER_DIFF=$(. "$semver"   \
     compare                 \
@@ -37,7 +37,7 @@ fi
 
 
 
-# Tag this baby up
+# Tag this puppy up
 # ==========================================
 git tag $MASTER_SEMVER
 git push origin $MASTER_SEMVER

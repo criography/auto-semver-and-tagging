@@ -3,9 +3,10 @@
 
 # fun: get_semver branch
 # txt: retrieve package.json's version from a local branch or remote master
-# opt: branch: 'master' or omitted to use current, local branch
-# use: sum 'master'
-# api: sum
+# opt: branch: 'master' for remote master, 'branch' or omitted to use current, local branch
+# use: get_semver 'master'
+# use: get_semver 'branch'
+# use: get_semver
 get_semver() {
     if [[ "$1" == "master" ]]; then
        JSON="git show origin/master:package.json"
@@ -20,13 +21,18 @@ get_semver() {
 
 
 
-
+# fun: get_current_branch
+# txt: extract current branch name
+# use: get_current_branch
 get_current_branch() {
     echo $(git rev-parse --abbrev-ref HEAD)
 }
 
 
 
-get_latest_tag() {
+# fun: get_highest_tag
+# txt: extract highest tag number
+# use: get_highest_tag
+get_highest_tag() {
     echo $(git tag | tail -n 1)
 }
