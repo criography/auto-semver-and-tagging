@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "semver": "sh ./.scripts/semver/init.sh",
+    "semver": "bash ./.scripts/semver/init.sh",
+    "x": "bash ./.scripts/semver/test.sh",
     "pre-push": "npm run semver"
   },
   "repository": {
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/criography/test#readme",
   "devDependencies": {
-    "semver": "^5.6.0"
+    "semver": "^5.6.0",
+    "semver-tool": "git+https://github.com/fsaintjacques/semver-tool.git"
   }
 }

@@ -1,27 +1,25 @@
 #!/bin/bash
 
-get_current_dir() {
-  echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-}
+# libs
+. ../vendor/semver-tool/src/semver
 
-get_semver() {
-    if [[ "$1" == "master" ]]; then
-       JSON="git show origin/master:package.json"
-    else
-       JSON="cat ./package.json"
-    fi
-
-    PACKAGE=$($JSON | grep "version" | head -1 | cut -d\" -f4)
-
-    echo "$PACKAGE"
-}
+# helpers
+. ../helpers/bash/filesystem.sh
+. ../helpers/bash/git.sh
 
 
-# ONLY RUN IF NOT MASTER
+
+# Exit early if master
 # =======================================
+if [[ $(get_current_branch) == "master" ]]; then
+  exit
+fi
 
 
-# ensure all refs are current
+
+# Ensure all refs are current.
+# If omitted, it's likely that a stale version of package.json
+# will be used to extract the current version from remote master.
 # =======================================
 git fetch origin master
 
