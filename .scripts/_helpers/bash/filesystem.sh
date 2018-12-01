@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
 
 get_current_dir() {
   echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"

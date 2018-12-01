@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
 
 # fun: get_semver branch
 # txt: retrieve package.json's version from a local branch or remote master
@@ -22,4 +23,10 @@ get_semver() {
 
 get_current_branch() {
     echo $(git rev-parse --abbrev-ref HEAD)
+}
+
+
+
+get_latest_tag() {
+    echo $(git tag | tail -n 1)
 }
