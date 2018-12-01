@@ -24,3 +24,9 @@ get_semver() {
 get_current_branch() {
     echo $(git rev-parse --abbrev-ref HEAD)
 }
+
+
+
+get_latest_tag() {
+    echo $(git tag | tail -n 1)
+}
