@@ -36,6 +36,7 @@ Proof of concept creating a tag matching master's semver.
 
 #### Usage:
 1. After successful merge, `git checkout master`
+1. `git pull` 
 1. `npm run tag` 
 
 #### Script steps:
