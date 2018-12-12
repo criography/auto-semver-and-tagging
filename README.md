@@ -1,50 +1,52 @@
 # Dependencies
 1. [Husky](https://github.com/typicode/husky) — npm package for better and easier handling of git hooks (devDependencies)
-1. [semver-tool](https://github.com/fsaintjacques/semver-tool) — bash script for semver processing (preinstalled)
+1. [semver-tool](https://github.com/fsaintjacques/semver-tool) — bash script for semver processing (preinstalled in `.scripts/vendor` dir)
 
 
 
 # Automated semver
 Proof of concept using `post-commit` hook to update `version` in `package.json`. 
 
+#### Requirements
+1. Ensure `Husky` package is available by running `npm i`.
+
 #### Usage:
 1. Create a new branch and perform whatever work in it.
-1. Ensure `Husky` is available and set up by running `npm i` (only required once)
 1. Commit and push your work as usual.
-1. Observe the "magic" in your commit history.   
+1. Observe the "magic" (ie. additional commit).   
 <img src="https://media.giphy.com/media/5sgppAtcWgPhS/giphy-downsized.gif" width="400" alt="clearly not magic" />
 
 #### Script steps:
-1. If current branch is master, exit
-1. Otherwise, fetch origin master, to ensure latest data
-1. Extract semvers from local branch's `package.json` and the current remote master.
-1. If branch is greater than master, assume manual bump (as expected for minor and major releases) and exit.
-1. Otherwise, bump up the semver (patch level) using master as a base.
-1. Update the file
-1. Create a new commit
+1. If current branch is master, exit early
+1. Otherwise, fetch origin master, to ensure latest `package.json`
+1. Extract semvers from `package.json`s (local branch's and the latest remote master's).
+1. If branch is already greater than master, assume manual bump (e.g. for minor and major releases) or earlier run of this script and exit.
+1. Otherwise, calculate the new semver (patch level) using latest remote master as a base.
+1. Update the `package.json`
+1. Create "magical" commit
 
 #### Notes
-While I was hoping this could be achieved in `pre-push` hook, it turns out it's triggered after the remote 
+1. While I was hoping this could be achieved in `pre-push` hook, it turns out it's triggered after the remote 
 refs have been updated but before any objects have been transferred. Creating additional commits at this point is 
-possible, but requires cancelling original push and triggering a separate one from the hook, which confuses git and 
-results in an error. Although it works, is hardly a great dev experience.
+possible, but requires cancelling original push and triggering a separate one from the hook, which confuses git and results in an error. Although it works, it's hardly great dev experience.
+
+1. This script compares semvers from `package.json`s only, which should be sufficient if everybody manages 
+them and tags via these scripts. That said, if we want to protect ourselves completely, this script could also check against the latest remote tag, and bump the version accordingly.
 
 
 
 # Automated tagging
-Proof of concept creating a tag matching master's semver.
+Proof of concept for creating a tag matching master's semver.
 
 #### Usage:
-1. After successful merge, `git checkout master`
-1. `git pull` 
-1. `npm run tag` 
+1. After successful merge, execute `npm run tag` 
 
 #### Script steps:
-1. Fetch and prune all local tags that don't have matching remote instances
-1. Extract the highest tag number and remote master's semver
+1. Fetch origin master, to ensure latest `package.json`
+1. Extract the highest remote tag number and remote master's semver
 1. Compare these 2 and:
-    1. if `tag` > `semver`, throw a warning (tag should not be ahead of semver)
-    1. if `tag` == `semver`, exit
+    1. if `tag` > `semver`, throw an error (tag should not be ahead of semver) and exit
+    1. if `tag` == `semver`, throw a warning (was tag created manually?) and exit
     1. if `tag` < `semver`, create a new tag
 
 #### Notes
