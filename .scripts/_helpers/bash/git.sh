@@ -31,8 +31,16 @@ get_current_branch() {
 
 
 # fun: get_highest_tag
-# txt: extract highest tag number
+# txt: extract highest remote tag number
 # use: get_highest_tag
-get_highest_tag() {
+get_highest_local_tag() {
     echo $(git tag | tail -n 1)
+}
+
+
+# fun: get_latest_remote_tag
+# txt: extract highest local tag number
+# use: get_latest_remote_tag
+get_latest_remote_tag() {
+    echo $(git ls-remote --tags --sort=committerdate | tail -1 | cut -d "/" -f 3)
 }
