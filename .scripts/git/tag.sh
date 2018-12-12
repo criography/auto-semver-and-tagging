@@ -10,6 +10,15 @@ semver="./.scripts/vendor/semver-tool/src/semver"
 
 
 
+# Ensure all refs are current.
+# If omitted, it's likely that a stale version
+# of package.json will be used to extract the
+# current version from remote master.
+# =======================================
+git fetch origin master
+
+
+
 # Diff the latest master semver with the latest tag.
 # Exit early if matching.
 # Warn if tag ahead of semver.
@@ -25,7 +34,7 @@ SEMVER_DIFF=$(. "$semver"   \
 
 if [[ $SEMVER_DIFF == 1 ]]; then
     log_error "DRAMA AHEAD: your latest tag ($LATEST_TAG) is ahead of the package.json ($MASTER_SEMVER)!"
-    exit
+    exit 1
 elif [[ $SEMVER_DIFF == 0 ]]; then
     log_warn "Wait, what? The $MASTER_SEMVER tag is already there. Probably double-check it."
     exit
