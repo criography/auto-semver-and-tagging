@@ -17,7 +17,7 @@ Proof of concept using `post-commit` hook to update `version` in `package.json`.
 #### Script steps:
 1. If current branch is master, exit
 1. Otherwise, fetch origin master, to ensure latest data
-1. Extract semvers from local branch's package.json and the current remote master.
+1. Extract semvers from local branch's `package.json` and the current remote master.
 1. If branch is greater than master, assume manual bump (as expected for minor and major releases) and exit.
 1. Otherwise, bump up the semver (patch level) using master as a base.
 1. Update the file
