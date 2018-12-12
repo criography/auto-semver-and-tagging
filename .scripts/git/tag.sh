@@ -34,7 +34,7 @@ SEMVER_DIFF=$(. "$semver"   \
 
 if [[ $SEMVER_DIFF == 1 ]]; then
     log_error "DRAMA AHEAD: your latest tag ($LATEST_TAG) is ahead of the package.json ($MASTER_SEMVER)!"
-    exit 1
+    exit
 elif [[ $SEMVER_DIFF == 0 ]]; then
     log_warn "Wait, what? The $MASTER_SEMVER tag is already there. Probably double-check it."
     exit
