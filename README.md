@@ -43,7 +43,7 @@ Proof of concept for creating a tag matching master's semver.
 1. Execute `npm run tag` 
 
 #### Script steps:
-1. Fetch origin master, to ensure latest `package.json`
+1. Fetch origin master, to ensure latest refs, and prune the tags
 1. Extract the highest remote tag number and remote master's semver
 1. Compare these 2 and:
     1. if `tag` > `semver`, throw an error (tag should not be ahead of semver) and exit
