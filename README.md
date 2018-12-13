@@ -39,7 +39,8 @@ them and tags via these scripts. That said, if we want to protect ourselves comp
 Proof of concept for creating a tag matching master's semver.
 
 #### Usage:
-1. After successful merge, execute `npm run tag` 
+1. After successful merge, `git checkout master && git pull` 
+1. Execute `npm run tag` 
 
 #### Script steps:
 1. Fetch origin master, to ensure latest `package.json`
@@ -52,3 +53,6 @@ Proof of concept for creating a tag matching master's semver.
 #### Notes
 While there's a `post-merge` hook, it actually triggers after each `git pull`, so not that useful in this case.   
 To automate this process, one would have to configure their CI to listen to a specific Github's webhook and trigger the npm script accordingly.
+
+I suppose we could add `git checkout master && git pull` to the script to make it even easier. Perhaps with 
+stashing and under a flag, in case someone did a partial commit?
