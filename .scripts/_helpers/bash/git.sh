@@ -44,3 +44,11 @@ get_highest_local_tag() {
 get_latest_remote_tag() {
     echo $(git ls-remote --tags --sort=committerdate | tail -1 | cut -d "/" -f 3)
 }
+
+
+# fun: prune_tags
+# txt: remove local git tags that are no longer on the remote repository
+# use: prune_tags
+prune_tags() {
+    git fetch --prune origin "+refs/tags/*:refs/tags/*"
+}

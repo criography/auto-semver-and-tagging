@@ -16,6 +16,7 @@ semver="./.scripts/vendor/semver-tool/src/semver"
 # current version from remote master.
 # =======================================
 git fetch origin master
+prune_tags
 
 
 
